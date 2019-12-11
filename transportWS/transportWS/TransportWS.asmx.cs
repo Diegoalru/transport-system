@@ -66,17 +66,14 @@ namespace transportWS
             {
                 SqlConnection conn = new SqlConnection();
                 bool existe;
-                string query = $"SELECT * FROM USUARIOS WHERE [USER] = {usuario};";
+                string query = $"SELECT * FROM [USUARIOS] WHERE [USER] = '{usuario}';";
                 using (conn = new SqlConnection(ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         conn.Open();
-                        var result = cmd.ExecuteNonQuery();
-                        if (result != 1)
-                            existe = false;
-                        else
-                            existe = true;
+                        var result = cmd.ExecuteReader();
+                        existe = result.HasRows ? true : false;
                     }
                 }
                 conn.Close();
