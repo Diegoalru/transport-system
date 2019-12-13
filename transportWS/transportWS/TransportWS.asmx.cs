@@ -10,7 +10,7 @@ namespace transportWS
     /// <summary>
     /// Descripción breve de TransportWS
     /// </summary>
-    [WebService(Namespace = "http://www.transportservice.com/")]
+    [WebService(Namespace = "http://www.transportservice.com/", Name = "TransportService", Description = "Web Service. ULACIT IIIC0 2019")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
