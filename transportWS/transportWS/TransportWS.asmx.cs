@@ -495,7 +495,7 @@ namespace transportWS
         }
 
         [WebMethod]
-        public bool InsertaTipoIdentificador(string Tipo)
+        public Boolean InsertaTipoIdentificador(string Tipo)
         {
             try
             {
@@ -522,12 +522,37 @@ namespace transportWS
 
         #region MetodosContacto
         [WebMethod]
-        public bool InsertaContacto(string Tipo)
+        public Boolean InsertaContacto(int Tipo, string Usuario, string Dato)
         {
             try
             {
-                string query = $"INSERT INTO TIPO_IDENTIFICADOR (NOMBRE) VALUES (N'{Tipo}');";
+                string query = $"INSERT INTO CONTACTO (FK_TIPO, FK_PERSONA, DATO) VALUES ({Tipo}, (SELECT dbo.GET_PERSONACODE('{Usuario}');), N'{Dato}');";
                 SqlConnection conn = new SqlConnection(ConnectionString);
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public Boolean ModificaContacto(int Tipo, string Usuario, string Dato)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                string query = $"UPDATE CONTACTO SET DATO = N'{Dato}' WHERE TIPO = {Tipo} AND FK_PERSONA = (SELECT dbo.GET_PERSONACODE('{Usuario}'));";
                 using (conn)
                 {
                     conn.Open();
@@ -547,5 +572,368 @@ namespace transportWS
         }
         #endregion
 
+        #region MetodosIdentificador
+        [WebMethod]
+        public Boolean InsertaIndentificador(int Tipo, string Usuario, string Dato)
+        {
+            try
+            {
+                string query = $"INSERT INTO IDENTIFICADOR (FK_TIPO, FK_PERSONA, DATO) VALUES ({Tipo}, (SELECT dbo.GET_PERSONACODE('{Usuario}');), N'{Dato}');";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public Boolean ModificaIndentificador(int Tipo, string Usuario, string Dato)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                string query = $"UPDATE IDENTIFICADOR SET DATO = N'{Dato}' WHERE TIPO = {Tipo} AND FK_PERSONA = (SELECT dbo.GET_PERSONACODE('{Usuario}'));";
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+        #endregion
+
+        #region MetodosParadas
+        [WebMethod]
+        public Boolean InsertaParada(string POSX, string POSY, string Nombre)
+        {
+            try
+            {
+                string query = $"INSERT INTO PARADA (POS_X, POS_Y, NOMBRE) VALUES ('{POSX}', '{POSY}', N'{Nombre}');";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public Boolean ModificaParada(string Nombre, string POSX, string POSY)
+        {
+            try
+            {
+                string query = $"UPDATE PARADA SER POS_X = '{POSX}', POS_Y = '{POSY}' WHERE NOMBRE = N'{Nombre}';";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public Boolean EliminaParada(string Nombre)
+        {
+            try
+            {
+                string query = $"DELETE FROM PARADA WHERE NOMBRE = N'{Nombre}';";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public DataSet RetornaParada()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                string query = $@"SELECT NOMBRE AS [Nombre_de_Parada] FROM PARADA;";
+                SqlConnection conn = new SqlConnection();
+                using (conn = new SqlConnection(ConnectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(ds);
+                        }
+                    }
+                }
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        [WebMethod]
+        public Boolean ExisteParada(string Nombre)
+        {
+            try
+            {
+                string query = $"SELECT NOMBRE FROM PARADA WHERE NOMBRE = '{Nombre}';";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                bool existe;
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        var result = cmd.ExecuteReader();
+                        existe = result.HasRows;
+                    }
+                    conn.Close();
+                }
+                return existe;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+        #endregion
+
+        /*
+         * TODO: Muestra la lista del total de registros
+         */
+
+        #region MetodosRegistro
+        [WebMethod]
+        public Boolean InsertaRegistro(string Usuario, DateTime MesCobro, decimal Monto, bool FuePagado)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                string query = $@"
+                INSERT 
+                    INTO 
+                        REGISTRO 
+                        (FK_PERSONA
+                        ,MES_AL_COBRO
+                        ,MONTO
+                        ,FUE_PAGADO) 
+                    VALUES 
+                        (
+                        (SELECT dbo.GET_PERSONACODE('{Usuario}'))
+                        ,DATEFROMPARTS({MesCobro.Year}, {MesCobro.Month}, {MesCobro.Day})
+                        ,{Monto}
+                        ,{(FuePagado ? 1 : 0)}
+                        );";
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public Boolean ExisteRegistro(string Usuario, DateTime MesCobro)
+        {
+            try
+            {
+                bool existe;
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                string query = $"SELECT * FROM REGISTRO WHERE FK_PERSONA = (SELECT dbo.GET_PERSONACODE('{Usuario}'));";
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        var result = cmd.ExecuteReader();
+                        existe = result.HasRows;
+                    }
+                    conn.Close();
+                }
+                return existe;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public Boolean ModificaRegistro(string Usuario, DateTime MesCobro, bool Pago)
+        {
+            try
+            {
+                string query = $"UPDATE REGISTRO SET [FUE_PAGADO] = {Pago} WHERE [MES_AL_COBRO]  AND FK_PERSONA = (SELECT dbo.GET_PERSONACODE('{Usuario}'));";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+        #endregion
+
+        #region MetodosColegio
+        [WebMethod]
+        public Boolean InsertaColegio(string Nombre)
+        {
+            try
+            {
+                string query = $"INSERT INTO COLEGIO (NOMBRE) VALUES (N'{Nombre}');";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public Boolean ExisteColegio(string Nombre)
+        {
+            try
+            {
+                string query = $"SELECT NOMBRE FROM COLEGIO WHERE NOMBRE = N'{Nombre}';";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                bool existe;
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        var result = cmd.ExecuteReader();
+                        existe = result.HasRows;
+                    }
+                    conn.Close();
+                }
+                return existe;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public DataSet RetornaColegio()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                string query = $@"SELECT CODE, NOMBRE FROM COLEGIO;";
+                SqlConnection conn = new SqlConnection();
+                using (conn = new SqlConnection(ConnectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(ds);
+                        }
+                    }
+                }
+                conn.Close();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+        #endregion
     }
 }
