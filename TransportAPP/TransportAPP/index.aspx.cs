@@ -13,8 +13,6 @@ namespace TransportAPP
         protected void Page_Load(object sender, EventArgs e)
         {
             TransportWS ws = new TransportWS();
-            string saludoText = ws.Saludo(nombre: "Mundo");
-            Lbl_Text.Text = saludoText;
         }
     }
 }
