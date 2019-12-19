@@ -148,7 +148,7 @@ namespace transportWS
                 bool existe;
                 string query = $@"
                 SELECT 
-*                   *
+                    *
                 FROM 
                     USUARIO
                 WHERE 
