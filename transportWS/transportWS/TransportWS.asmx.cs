@@ -23,7 +23,7 @@ namespace transportWS
         private string ConnectionString = ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
         #endregion
 
-        #region MetodosVarios
+        #region Varios
         [WebMethod]
         public Boolean ValidaConexion()
         {
@@ -75,7 +75,7 @@ namespace transportWS
         }
         #endregion
 
-        #region MetodosUsuario
+        #region  Usuario
         [WebMethod]
         public Boolean InsertaUsuario(string Usuario, string Clave, string Email)
         {
@@ -229,7 +229,7 @@ namespace transportWS
         }
         #endregion
 
-        #region MetodosPersona
+        #region  Persona
         [WebMethod]
         public Boolean InsertaPersona(string PNombre, string SNombre, string PApellido, string SApellido, char Sexo, DateTime FN, string Usuario)
         {
@@ -408,7 +408,7 @@ namespace transportWS
         }
         #endregion
 
-        #region MetodosTipoContacto
+        #region  TipoContacto
         [WebMethod]
         public DataSet RetornaTipoContacto()
         {
@@ -464,7 +464,7 @@ namespace transportWS
         }
         #endregion
 
-        #region MetodosTipoIdentificador
+        #region  TipoIdentificador
         [WebMethod]
         public DataSet RetornaTipoIdentificador()
         {
@@ -520,7 +520,7 @@ namespace transportWS
         }
         #endregion
 
-        #region MetodosContacto
+        #region  Contacto
         [WebMethod]
         public Boolean InsertaContacto(int Tipo, string Usuario, string Dato)
         {
@@ -572,13 +572,13 @@ namespace transportWS
         }
         #endregion
 
-        #region MetodosIdentificador
+        #region  Identificador
         [WebMethod]
         public Boolean InsertaIndentificador(int Tipo, string Usuario, string Dato)
         {
             try
             {
-                string query = $"INSERT INTO IDENTIFICADOR (FK_TIPO, FK_PERSONA, DATO) VALUES ({Tipo}, (SELECT dbo.GET_PERSONACODE('{Usuario}');), N'{Dato}');";
+                string query = $"INSERT INTO IDENTIFICADOR (FK_TIPO, FK_PERSONA, DATO) VALUES ({Tipo}, (SELECT dbo.GET_PERSONACODE('{Usuario}')), N'{Dato}');";
                 SqlConnection conn = new SqlConnection(ConnectionString);
                 using (conn)
                 {
@@ -624,7 +624,7 @@ namespace transportWS
         }
         #endregion
 
-        #region MetodosParadas
+        #region  Paradas
         [WebMethod]
         public Boolean InsertaParada(string POSX, string POSY, string Nombre)
         {
@@ -760,7 +760,14 @@ namespace transportWS
          * TODO: Muestra la lista del total de registros
          */
 
-        #region MetodosRegistro
+        #region  Registro
+
+        [WebMethod]
+        public void Prueba()
+        {
+            InsertaRegistro("Espartan100", new DateTime(2020, 01, 01), 25000, false);
+        }
+
         [WebMethod]
         public Boolean InsertaRegistro(string Usuario, DateTime MesCobro, decimal Monto, bool FuePagado)
         {
@@ -853,7 +860,7 @@ namespace transportWS
         }
         #endregion
 
-        #region MetodosColegio
+        #region  Colegio
         [WebMethod]
         public Boolean InsertaColegio(string Nombre)
         {
@@ -932,6 +939,34 @@ namespace transportWS
             {
                 System.Console.WriteLine(ex.Message);
                 return null;
+            }
+        }
+        #endregion
+
+        #region Encargado
+        //FIXME
+        [WebMethod]
+        public Boolean InsertaEncargado(string Nombre)
+        {
+            try
+            {
+                string query = $"INSERT INTO COLEGIO (NOMBRE) VALUES (N'{Nombre}');";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
             }
         }
         #endregion
