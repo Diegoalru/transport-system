@@ -1026,7 +1026,37 @@ namespace transportWS
                 Console.WriteLine(ex.Message);
                 return null;
             }
-}
+        }
+
+
+        [WebMethod]
+        public DataSet InfoHistorial(string Usuario)
+        {
+            try
+            {
+                string query = $"SELECT * FROM dbo.RETORNAHISTORIAL('{Usuario}')";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                DataSet ds = new DataSet();
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(ds);
+                        }
+                    }
+                    conn.Close();
+                }
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
         #endregion
 
     }
