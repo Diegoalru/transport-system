@@ -131,6 +131,8 @@
     <Content Include="Css\js\simple-lightbox.min.js" />
     <Content Include="Css\js\SmoothScroll.min.js" />
     <Content Include="Home.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="MasterPage\WebForm1.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Css\fonts\fontawesome-webfont.eot" />
@@ -145,10 +147,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Web References\WebReference\Reference.map">
+    <None Include="Web References\WebReference\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\WebReference\TransportWS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -163,12 +165,26 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage\ConsutaEstudiante.Master.cs">
       <DependentUpon>ConsutaEstudiante.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MasterPage\ConsutaEstudiante.Master.designer.cs">
       <DependentUpon>ConsutaEstudiante.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

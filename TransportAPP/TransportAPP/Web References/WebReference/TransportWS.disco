@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
   <contractRef ref="http://3.135.223.148:5000/TransportWS.asmx?wsdl" docRef="http://3.135.223.148:5000/TransportWS.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://3.135.223.148:5000/TransportWS.asmx" xmlns:q1="http://www.transportservice.com/" binding="q1:TransportWSSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://3.135.223.148:5000/TransportWS.asmx" xmlns:q2="http://www.transportservice.com/" binding="q2:TransportWSSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://3.135.223.148:5000/TransportWS.asmx" xmlns:q1="http://www.transportservice.com/" binding="q1:TransportServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://3.135.223.148:5000/TransportWS.asmx" xmlns:q2="http://www.transportservice.com/" binding="q2:TransportServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
 </discovery>

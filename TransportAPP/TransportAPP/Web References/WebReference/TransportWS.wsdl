@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.transportservice.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.transportservice.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.transportservice.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.transportservice.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Service. ULACIT IIIC0 2019</wsdl:documentation>
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://www.transportservice.com/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="ValidaConexion">
+        <s:complexType />
+      </s:element>
+      <s:element name="ValidaConexionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidaConexionResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Saludo">
         <s:complexType>
           <s:sequence>
@@ -16,13 +28,43 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetUsuarios">
-        <s:complexType />
-      </s:element>
-      <s:element name="GetUsuariosResponse">
+      <s:element name="Login">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetUsuariosResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoginResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Clave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaUsuarioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetornaUsuario">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetornaUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetornaUsuarioResult">
               <s:complexType>
                 <s:sequence maxOccurs="unbounded">
                   <s:any minOccurs="0" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
@@ -36,7 +78,7 @@
       <s:element name="ExisteUsuario">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -47,17 +89,503 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="InsertaUsuario">
+      <s:element name="EliminaUsuario">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="clave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="InsertaUsuarioResponse">
+      <s:element name="EliminaUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminaUsuarioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Clave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificaUsuarioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaPersona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PNombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SNombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PApellido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SApellido" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Sexo" type="s1:char" />
+            <s:element minOccurs="1" maxOccurs="1" name="FN" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaPersonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaPersonaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaPersona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PNombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SNombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PApellido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SApellido" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Sexo" type="s1:char" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaPersonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificaPersonaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetornaPersona">
         <s:complexType />
       </s:element>
+      <s:element name="RetornaPersonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetornaPersonaResult">
+              <s:complexType>
+                <s:sequence maxOccurs="unbounded">
+                  <s:any minOccurs="0" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="0" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExistePersona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PNombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PApellido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SApellido" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExistePersonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExistePersonaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminaPersona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PNombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PApellido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SApellido" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminaPersonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminaPersonaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetornaTipoContacto">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetornaTipoContactoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetornaTipoContactoResult">
+              <s:complexType>
+                <s:sequence maxOccurs="unbounded">
+                  <s:any minOccurs="0" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="0" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaTipoContacto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaTipoContactoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaTipoContactoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetornaTipoIdentificador">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetornaTipoIdentificadorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetornaTipoIdentificadorResult">
+              <s:complexType>
+                <s:sequence maxOccurs="unbounded">
+                  <s:any minOccurs="0" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="0" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaTipoIdentificador">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaTipoIdentificadorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaTipoIdentificadorResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaContacto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dato" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaContactoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaContactoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaContacto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dato" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaContactoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificaContactoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaIndentificador">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dato" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaIndentificadorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaIndentificadorResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaIndentificador">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dato" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaIndentificadorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificaIndentificadorResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaParada">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="POSX" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="POSY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaParadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaParadaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaParada">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="POSX" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="POSY" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaParadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificaParadaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminaParada">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminaParadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminaParadaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetornaParada">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetornaParadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetornaParadaResult">
+              <s:complexType>
+                <s:sequence maxOccurs="unbounded">
+                  <s:any minOccurs="0" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="0" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExisteParada">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExisteParadaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExisteParadaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Prueba">
+        <s:complexType />
+      </s:element>
+      <s:element name="PruebaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="InsertaRegistro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MesCobro" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Monto" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="FuePagado" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaRegistroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaRegistroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExisteRegistro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MesCobro" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExisteRegistroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExisteRegistroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaRegistro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MesCobro" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Pago" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaRegistroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModificaRegistroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaColegio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaColegioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaColegioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExisteColegio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExisteColegioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExisteColegioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetornaColegio">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetornaColegioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetornaColegioResult">
+              <s:complexType>
+                <s:sequence maxOccurs="unbounded">
+                  <s:any minOccurs="0" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="0" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaEncargado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertaEncargadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertaEncargadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InfoEstudiante">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InfoEstudianteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InfoEstudianteResult">
+              <s:complexType>
+                <s:sequence maxOccurs="unbounded">
+                  <s:any minOccurs="0" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="0" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InfoPagos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InfoPagosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InfoPagosResult">
+              <s:complexType>
+                <s:sequence maxOccurs="unbounded">
+                  <s:any minOccurs="0" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="0" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InfoHistorial">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InfoHistorialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InfoHistorialResult">
+              <s:complexType>
+                <s:sequence maxOccurs="unbounded">
+                  <s:any minOccurs="0" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="0" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="boolean" type="s:boolean" />
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataSet" nillable="true">
         <s:complexType>
@@ -67,26 +595,30 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="char">
+        <s:restriction base="s:unsignedShort" />
+      </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="ValidaConexionSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidaConexion" />
+  </wsdl:message>
+  <wsdl:message name="ValidaConexionSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidaConexionResponse" />
+  </wsdl:message>
   <wsdl:message name="SaludoSoapIn">
     <wsdl:part name="parameters" element="tns:Saludo" />
   </wsdl:message>
   <wsdl:message name="SaludoSoapOut">
     <wsdl:part name="parameters" element="tns:SaludoResponse" />
   </wsdl:message>
-  <wsdl:message name="GetUsuariosSoapIn">
-    <wsdl:part name="parameters" element="tns:GetUsuarios" />
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
-  <wsdl:message name="GetUsuariosSoapOut">
-    <wsdl:part name="parameters" element="tns:GetUsuariosResponse" />
-  </wsdl:message>
-  <wsdl:message name="ExisteUsuarioSoapIn">
-    <wsdl:part name="parameters" element="tns:ExisteUsuario" />
-  </wsdl:message>
-  <wsdl:message name="ExisteUsuarioSoapOut">
-    <wsdl:part name="parameters" element="tns:ExisteUsuarioResponse" />
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
   <wsdl:message name="InsertaUsuarioSoapIn">
     <wsdl:part name="parameters" element="tns:InsertaUsuario" />
@@ -94,116 +626,1148 @@
   <wsdl:message name="InsertaUsuarioSoapOut">
     <wsdl:part name="parameters" element="tns:InsertaUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="RetornaUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:RetornaUsuario" />
+  </wsdl:message>
+  <wsdl:message name="RetornaUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:RetornaUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExisteUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ExisteUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ExisteUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ExisteUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminaUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminaUsuario" />
+  </wsdl:message>
+  <wsdl:message name="EliminaUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminaUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ModificaUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaPersonaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaPersona" />
+  </wsdl:message>
+  <wsdl:message name="InsertaPersonaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaPersonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaPersonaSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaPersona" />
+  </wsdl:message>
+  <wsdl:message name="ModificaPersonaSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaPersonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetornaPersonaSoapIn">
+    <wsdl:part name="parameters" element="tns:RetornaPersona" />
+  </wsdl:message>
+  <wsdl:message name="RetornaPersonaSoapOut">
+    <wsdl:part name="parameters" element="tns:RetornaPersonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExistePersonaSoapIn">
+    <wsdl:part name="parameters" element="tns:ExistePersona" />
+  </wsdl:message>
+  <wsdl:message name="ExistePersonaSoapOut">
+    <wsdl:part name="parameters" element="tns:ExistePersonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminaPersonaSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminaPersona" />
+  </wsdl:message>
+  <wsdl:message name="EliminaPersonaSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminaPersonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetornaTipoContactoSoapIn">
+    <wsdl:part name="parameters" element="tns:RetornaTipoContacto" />
+  </wsdl:message>
+  <wsdl:message name="RetornaTipoContactoSoapOut">
+    <wsdl:part name="parameters" element="tns:RetornaTipoContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoContactoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaTipoContacto" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoContactoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaTipoContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetornaTipoIdentificadorSoapIn">
+    <wsdl:part name="parameters" element="tns:RetornaTipoIdentificador" />
+  </wsdl:message>
+  <wsdl:message name="RetornaTipoIdentificadorSoapOut">
+    <wsdl:part name="parameters" element="tns:RetornaTipoIdentificadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoIdentificadorSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaTipoIdentificador" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoIdentificadorSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaTipoIdentificadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaContactoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaContacto" />
+  </wsdl:message>
+  <wsdl:message name="InsertaContactoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaContactoSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaContacto" />
+  </wsdl:message>
+  <wsdl:message name="ModificaContactoSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaIndentificadorSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaIndentificador" />
+  </wsdl:message>
+  <wsdl:message name="InsertaIndentificadorSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaIndentificadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaIndentificadorSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaIndentificador" />
+  </wsdl:message>
+  <wsdl:message name="ModificaIndentificadorSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaIndentificadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaParadaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaParada" />
+  </wsdl:message>
+  <wsdl:message name="InsertaParadaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaParadaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaParadaSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaParada" />
+  </wsdl:message>
+  <wsdl:message name="ModificaParadaSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaParadaResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminaParadaSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminaParada" />
+  </wsdl:message>
+  <wsdl:message name="EliminaParadaSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminaParadaResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetornaParadaSoapIn">
+    <wsdl:part name="parameters" element="tns:RetornaParada" />
+  </wsdl:message>
+  <wsdl:message name="RetornaParadaSoapOut">
+    <wsdl:part name="parameters" element="tns:RetornaParadaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExisteParadaSoapIn">
+    <wsdl:part name="parameters" element="tns:ExisteParada" />
+  </wsdl:message>
+  <wsdl:message name="ExisteParadaSoapOut">
+    <wsdl:part name="parameters" element="tns:ExisteParadaResponse" />
+  </wsdl:message>
+  <wsdl:message name="PruebaSoapIn">
+    <wsdl:part name="parameters" element="tns:Prueba" />
+  </wsdl:message>
+  <wsdl:message name="PruebaSoapOut">
+    <wsdl:part name="parameters" element="tns:PruebaResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaRegistroSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaRegistro" />
+  </wsdl:message>
+  <wsdl:message name="InsertaRegistroSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaRegistroResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExisteRegistroSoapIn">
+    <wsdl:part name="parameters" element="tns:ExisteRegistro" />
+  </wsdl:message>
+  <wsdl:message name="ExisteRegistroSoapOut">
+    <wsdl:part name="parameters" element="tns:ExisteRegistroResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaRegistroSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaRegistro" />
+  </wsdl:message>
+  <wsdl:message name="ModificaRegistroSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaRegistroResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaColegioSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaColegio" />
+  </wsdl:message>
+  <wsdl:message name="InsertaColegioSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaColegioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExisteColegioSoapIn">
+    <wsdl:part name="parameters" element="tns:ExisteColegio" />
+  </wsdl:message>
+  <wsdl:message name="ExisteColegioSoapOut">
+    <wsdl:part name="parameters" element="tns:ExisteColegioResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetornaColegioSoapIn">
+    <wsdl:part name="parameters" element="tns:RetornaColegio" />
+  </wsdl:message>
+  <wsdl:message name="RetornaColegioSoapOut">
+    <wsdl:part name="parameters" element="tns:RetornaColegioResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertaEncargadoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertaEncargado" />
+  </wsdl:message>
+  <wsdl:message name="InsertaEncargadoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertaEncargadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="InfoEstudianteSoapIn">
+    <wsdl:part name="parameters" element="tns:InfoEstudiante" />
+  </wsdl:message>
+  <wsdl:message name="InfoEstudianteSoapOut">
+    <wsdl:part name="parameters" element="tns:InfoEstudianteResponse" />
+  </wsdl:message>
+  <wsdl:message name="InfoPagosSoapIn">
+    <wsdl:part name="parameters" element="tns:InfoPagos" />
+  </wsdl:message>
+  <wsdl:message name="InfoPagosSoapOut">
+    <wsdl:part name="parameters" element="tns:InfoPagosResponse" />
+  </wsdl:message>
+  <wsdl:message name="InfoHistorialSoapIn">
+    <wsdl:part name="parameters" element="tns:InfoHistorial" />
+  </wsdl:message>
+  <wsdl:message name="InfoHistorialSoapOut">
+    <wsdl:part name="parameters" element="tns:InfoHistorialResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidaConexionHttpGetIn" />
+  <wsdl:message name="ValidaConexionHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
   <wsdl:message name="SaludoHttpGetIn">
     <wsdl:part name="nombre" type="s:string" />
   </wsdl:message>
   <wsdl:message name="SaludoHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="GetUsuariosHttpGetIn" />
-  <wsdl:message name="GetUsuariosHttpGetOut">
+  <wsdl:message name="LoginHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaUsuarioHttpGetIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Clave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaUsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaUsuarioHttpGetIn" />
+  <wsdl:message name="RetornaUsuarioHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="ExisteUsuarioHttpGetIn">
-    <wsdl:part name="usuario" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ExisteUsuarioHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="InsertaUsuarioHttpGetIn">
-    <wsdl:part name="usuario" type="s:string" />
-    <wsdl:part name="clave" type="s:string" />
+  <wsdl:message name="EliminaUsuarioHttpGetIn">
+    <wsdl:part name="Usuario" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="InsertaUsuarioHttpGetOut" />
+  <wsdl:message name="EliminaUsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaUsuarioHttpGetIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Clave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaUsuarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaPersonaHttpGetIn">
+    <wsdl:part name="PNombre" type="s:string" />
+    <wsdl:part name="SNombre" type="s:string" />
+    <wsdl:part name="PApellido" type="s:string" />
+    <wsdl:part name="SApellido" type="s:string" />
+    <wsdl:part name="Sexo" type="s:string" />
+    <wsdl:part name="FN" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaPersonaHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaPersonaHttpGetIn">
+    <wsdl:part name="PNombre" type="s:string" />
+    <wsdl:part name="SNombre" type="s:string" />
+    <wsdl:part name="PApellido" type="s:string" />
+    <wsdl:part name="SApellido" type="s:string" />
+    <wsdl:part name="Sexo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaPersonaHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaPersonaHttpGetIn" />
+  <wsdl:message name="RetornaPersonaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ExistePersonaHttpGetIn">
+    <wsdl:part name="PNombre" type="s:string" />
+    <wsdl:part name="PApellido" type="s:string" />
+    <wsdl:part name="SApellido" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExistePersonaHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="EliminaPersonaHttpGetIn">
+    <wsdl:part name="PNombre" type="s:string" />
+    <wsdl:part name="PApellido" type="s:string" />
+    <wsdl:part name="SApellido" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EliminaPersonaHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaTipoContactoHttpGetIn" />
+  <wsdl:message name="RetornaTipoContactoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoContactoHttpGetIn">
+    <wsdl:part name="Tipo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoContactoHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaTipoIdentificadorHttpGetIn" />
+  <wsdl:message name="RetornaTipoIdentificadorHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoIdentificadorHttpGetIn">
+    <wsdl:part name="Tipo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoIdentificadorHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaContactoHttpGetIn">
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Dato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaContactoHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaContactoHttpGetIn">
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Dato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaContactoHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaIndentificadorHttpGetIn">
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Dato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaIndentificadorHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaIndentificadorHttpGetIn">
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Dato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaIndentificadorHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaParadaHttpGetIn">
+    <wsdl:part name="POSX" type="s:string" />
+    <wsdl:part name="POSY" type="s:string" />
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaParadaHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaParadaHttpGetIn">
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="POSX" type="s:string" />
+    <wsdl:part name="POSY" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaParadaHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="EliminaParadaHttpGetIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EliminaParadaHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaParadaHttpGetIn" />
+  <wsdl:message name="RetornaParadaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ExisteParadaHttpGetIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExisteParadaHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="PruebaHttpGetIn" />
+  <wsdl:message name="PruebaHttpGetOut" />
+  <wsdl:message name="InsertaRegistroHttpGetIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="MesCobro" type="s:string" />
+    <wsdl:part name="Monto" type="s:string" />
+    <wsdl:part name="FuePagado" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaRegistroHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ExisteRegistroHttpGetIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="MesCobro" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExisteRegistroHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaRegistroHttpGetIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="MesCobro" type="s:string" />
+    <wsdl:part name="Pago" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaRegistroHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaColegioHttpGetIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaColegioHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ExisteColegioHttpGetIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExisteColegioHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaColegioHttpGetIn" />
+  <wsdl:message name="RetornaColegioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InsertaEncargadoHttpGetIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaEncargadoHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InfoEstudianteHttpGetIn">
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InfoEstudianteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InfoPagosHttpGetIn">
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InfoPagosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InfoHistorialHttpGetIn">
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InfoHistorialHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ValidaConexionHttpPostIn" />
+  <wsdl:message name="ValidaConexionHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
   <wsdl:message name="SaludoHttpPostIn">
     <wsdl:part name="nombre" type="s:string" />
   </wsdl:message>
   <wsdl:message name="SaludoHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="GetUsuariosHttpPostIn" />
-  <wsdl:message name="GetUsuariosHttpPostOut">
+  <wsdl:message name="LoginHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaUsuarioHttpPostIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Clave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaUsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaUsuarioHttpPostIn" />
+  <wsdl:message name="RetornaUsuarioHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="ExisteUsuarioHttpPostIn">
-    <wsdl:part name="usuario" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ExisteUsuarioHttpPostOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="InsertaUsuarioHttpPostIn">
-    <wsdl:part name="usuario" type="s:string" />
-    <wsdl:part name="clave" type="s:string" />
+  <wsdl:message name="EliminaUsuarioHttpPostIn">
+    <wsdl:part name="Usuario" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="InsertaUsuarioHttpPostOut" />
-  <wsdl:portType name="TransportWSSoap">
+  <wsdl:message name="EliminaUsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaUsuarioHttpPostIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Clave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaUsuarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaPersonaHttpPostIn">
+    <wsdl:part name="PNombre" type="s:string" />
+    <wsdl:part name="SNombre" type="s:string" />
+    <wsdl:part name="PApellido" type="s:string" />
+    <wsdl:part name="SApellido" type="s:string" />
+    <wsdl:part name="Sexo" type="s:string" />
+    <wsdl:part name="FN" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaPersonaHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaPersonaHttpPostIn">
+    <wsdl:part name="PNombre" type="s:string" />
+    <wsdl:part name="SNombre" type="s:string" />
+    <wsdl:part name="PApellido" type="s:string" />
+    <wsdl:part name="SApellido" type="s:string" />
+    <wsdl:part name="Sexo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaPersonaHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaPersonaHttpPostIn" />
+  <wsdl:message name="RetornaPersonaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ExistePersonaHttpPostIn">
+    <wsdl:part name="PNombre" type="s:string" />
+    <wsdl:part name="PApellido" type="s:string" />
+    <wsdl:part name="SApellido" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExistePersonaHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="EliminaPersonaHttpPostIn">
+    <wsdl:part name="PNombre" type="s:string" />
+    <wsdl:part name="PApellido" type="s:string" />
+    <wsdl:part name="SApellido" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EliminaPersonaHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaTipoContactoHttpPostIn" />
+  <wsdl:message name="RetornaTipoContactoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoContactoHttpPostIn">
+    <wsdl:part name="Tipo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoContactoHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaTipoIdentificadorHttpPostIn" />
+  <wsdl:message name="RetornaTipoIdentificadorHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoIdentificadorHttpPostIn">
+    <wsdl:part name="Tipo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaTipoIdentificadorHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaContactoHttpPostIn">
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Dato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaContactoHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaContactoHttpPostIn">
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Dato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaContactoHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaIndentificadorHttpPostIn">
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Dato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaIndentificadorHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaIndentificadorHttpPostIn">
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="Dato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaIndentificadorHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaParadaHttpPostIn">
+    <wsdl:part name="POSX" type="s:string" />
+    <wsdl:part name="POSY" type="s:string" />
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaParadaHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaParadaHttpPostIn">
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="POSX" type="s:string" />
+    <wsdl:part name="POSY" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaParadaHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="EliminaParadaHttpPostIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EliminaParadaHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaParadaHttpPostIn" />
+  <wsdl:message name="RetornaParadaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="ExisteParadaHttpPostIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExisteParadaHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="PruebaHttpPostIn" />
+  <wsdl:message name="PruebaHttpPostOut" />
+  <wsdl:message name="InsertaRegistroHttpPostIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="MesCobro" type="s:string" />
+    <wsdl:part name="Monto" type="s:string" />
+    <wsdl:part name="FuePagado" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaRegistroHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ExisteRegistroHttpPostIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="MesCobro" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExisteRegistroHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ModificaRegistroHttpPostIn">
+    <wsdl:part name="Usuario" type="s:string" />
+    <wsdl:part name="MesCobro" type="s:string" />
+    <wsdl:part name="Pago" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificaRegistroHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InsertaColegioHttpPostIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaColegioHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ExisteColegioHttpPostIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExisteColegioHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="RetornaColegioHttpPostIn" />
+  <wsdl:message name="RetornaColegioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InsertaEncargadoHttpPostIn">
+    <wsdl:part name="Nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertaEncargadoHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="InfoEstudianteHttpPostIn">
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InfoEstudianteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InfoPagosHttpPostIn">
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InfoPagosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="InfoHistorialHttpPostIn">
+    <wsdl:part name="Usuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InfoHistorialHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:portType name="TransportServiceSoap">
+    <wsdl:operation name="ValidaConexion">
+      <wsdl:input message="tns:ValidaConexionSoapIn" />
+      <wsdl:output message="tns:ValidaConexionSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Saludo">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo de retorna un saludo.</wsdl:documentation>
       <wsdl:input message="tns:SaludoSoapIn" />
       <wsdl:output message="tns:SaludoSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetUsuarios">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retorna una lista de todos los usuarios que se encuentran en la base de datos.</wsdl:documentation>
-      <wsdl:input message="tns:GetUsuariosSoapIn" />
-      <wsdl:output message="tns:GetUsuariosSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ExisteUsuario">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo que valida la existencia de un usuario.</wsdl:documentation>
-      <wsdl:input message="tns:ExisteUsuarioSoapIn" />
-      <wsdl:output message="tns:ExisteUsuarioSoapOut" />
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="InsertaUsuario">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo que inserta un Usuario.</wsdl:documentation>
       <wsdl:input message="tns:InsertaUsuarioSoapIn" />
       <wsdl:output message="tns:InsertaUsuarioSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="RetornaUsuario">
+      <wsdl:input message="tns:RetornaUsuarioSoapIn" />
+      <wsdl:output message="tns:RetornaUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteUsuario">
+      <wsdl:input message="tns:ExisteUsuarioSoapIn" />
+      <wsdl:output message="tns:ExisteUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuario">
+      <wsdl:input message="tns:EliminaUsuarioSoapIn" />
+      <wsdl:output message="tns:EliminaUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUsuario">
+      <wsdl:input message="tns:ModificaUsuarioSoapIn" />
+      <wsdl:output message="tns:ModificaUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaPersona">
+      <wsdl:input message="tns:InsertaPersonaSoapIn" />
+      <wsdl:output message="tns:InsertaPersonaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaPersona">
+      <wsdl:input message="tns:ModificaPersonaSoapIn" />
+      <wsdl:output message="tns:ModificaPersonaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaPersona">
+      <wsdl:input message="tns:RetornaPersonaSoapIn" />
+      <wsdl:output message="tns:RetornaPersonaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistePersona">
+      <wsdl:input message="tns:ExistePersonaSoapIn" />
+      <wsdl:output message="tns:ExistePersonaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaPersona">
+      <wsdl:input message="tns:EliminaPersonaSoapIn" />
+      <wsdl:output message="tns:EliminaPersonaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoContacto">
+      <wsdl:input message="tns:RetornaTipoContactoSoapIn" />
+      <wsdl:output message="tns:RetornaTipoContactoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoContacto">
+      <wsdl:input message="tns:InsertaTipoContactoSoapIn" />
+      <wsdl:output message="tns:InsertaTipoContactoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoIdentificador">
+      <wsdl:input message="tns:RetornaTipoIdentificadorSoapIn" />
+      <wsdl:output message="tns:RetornaTipoIdentificadorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoIdentificador">
+      <wsdl:input message="tns:InsertaTipoIdentificadorSoapIn" />
+      <wsdl:output message="tns:InsertaTipoIdentificadorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaContacto">
+      <wsdl:input message="tns:InsertaContactoSoapIn" />
+      <wsdl:output message="tns:InsertaContactoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaContacto">
+      <wsdl:input message="tns:ModificaContactoSoapIn" />
+      <wsdl:output message="tns:ModificaContactoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaIndentificador">
+      <wsdl:input message="tns:InsertaIndentificadorSoapIn" />
+      <wsdl:output message="tns:InsertaIndentificadorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaIndentificador">
+      <wsdl:input message="tns:ModificaIndentificadorSoapIn" />
+      <wsdl:output message="tns:ModificaIndentificadorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaParada">
+      <wsdl:input message="tns:InsertaParadaSoapIn" />
+      <wsdl:output message="tns:InsertaParadaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaParada">
+      <wsdl:input message="tns:ModificaParadaSoapIn" />
+      <wsdl:output message="tns:ModificaParadaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaParada">
+      <wsdl:input message="tns:EliminaParadaSoapIn" />
+      <wsdl:output message="tns:EliminaParadaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaParada">
+      <wsdl:input message="tns:RetornaParadaSoapIn" />
+      <wsdl:output message="tns:RetornaParadaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteParada">
+      <wsdl:input message="tns:ExisteParadaSoapIn" />
+      <wsdl:output message="tns:ExisteParadaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Prueba">
+      <wsdl:input message="tns:PruebaSoapIn" />
+      <wsdl:output message="tns:PruebaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaRegistro">
+      <wsdl:input message="tns:InsertaRegistroSoapIn" />
+      <wsdl:output message="tns:InsertaRegistroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteRegistro">
+      <wsdl:input message="tns:ExisteRegistroSoapIn" />
+      <wsdl:output message="tns:ExisteRegistroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaRegistro">
+      <wsdl:input message="tns:ModificaRegistroSoapIn" />
+      <wsdl:output message="tns:ModificaRegistroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaColegio">
+      <wsdl:input message="tns:InsertaColegioSoapIn" />
+      <wsdl:output message="tns:InsertaColegioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteColegio">
+      <wsdl:input message="tns:ExisteColegioSoapIn" />
+      <wsdl:output message="tns:ExisteColegioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaColegio">
+      <wsdl:input message="tns:RetornaColegioSoapIn" />
+      <wsdl:output message="tns:RetornaColegioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaEncargado">
+      <wsdl:input message="tns:InsertaEncargadoSoapIn" />
+      <wsdl:output message="tns:InsertaEncargadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InfoEstudiante">
+      <wsdl:input message="tns:InfoEstudianteSoapIn" />
+      <wsdl:output message="tns:InfoEstudianteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InfoPagos">
+      <wsdl:input message="tns:InfoPagosSoapIn" />
+      <wsdl:output message="tns:InfoPagosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InfoHistorial">
+      <wsdl:input message="tns:InfoHistorialSoapIn" />
+      <wsdl:output message="tns:InfoHistorialSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="TransportWSHttpGet">
+  <wsdl:portType name="TransportServiceHttpGet">
+    <wsdl:operation name="ValidaConexion">
+      <wsdl:input message="tns:ValidaConexionHttpGetIn" />
+      <wsdl:output message="tns:ValidaConexionHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="Saludo">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo de retorna un saludo.</wsdl:documentation>
       <wsdl:input message="tns:SaludoHttpGetIn" />
       <wsdl:output message="tns:SaludoHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetUsuarios">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retorna una lista de todos los usuarios que se encuentran en la base de datos.</wsdl:documentation>
-      <wsdl:input message="tns:GetUsuariosHttpGetIn" />
-      <wsdl:output message="tns:GetUsuariosHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ExisteUsuario">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo que valida la existencia de un usuario.</wsdl:documentation>
-      <wsdl:input message="tns:ExisteUsuarioHttpGetIn" />
-      <wsdl:output message="tns:ExisteUsuarioHttpGetOut" />
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginHttpGetIn" />
+      <wsdl:output message="tns:LoginHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="InsertaUsuario">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo que inserta un Usuario.</wsdl:documentation>
       <wsdl:input message="tns:InsertaUsuarioHttpGetIn" />
       <wsdl:output message="tns:InsertaUsuarioHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="RetornaUsuario">
+      <wsdl:input message="tns:RetornaUsuarioHttpGetIn" />
+      <wsdl:output message="tns:RetornaUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteUsuario">
+      <wsdl:input message="tns:ExisteUsuarioHttpGetIn" />
+      <wsdl:output message="tns:ExisteUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuario">
+      <wsdl:input message="tns:EliminaUsuarioHttpGetIn" />
+      <wsdl:output message="tns:EliminaUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUsuario">
+      <wsdl:input message="tns:ModificaUsuarioHttpGetIn" />
+      <wsdl:output message="tns:ModificaUsuarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaPersona">
+      <wsdl:input message="tns:InsertaPersonaHttpGetIn" />
+      <wsdl:output message="tns:InsertaPersonaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaPersona">
+      <wsdl:input message="tns:ModificaPersonaHttpGetIn" />
+      <wsdl:output message="tns:ModificaPersonaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaPersona">
+      <wsdl:input message="tns:RetornaPersonaHttpGetIn" />
+      <wsdl:output message="tns:RetornaPersonaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistePersona">
+      <wsdl:input message="tns:ExistePersonaHttpGetIn" />
+      <wsdl:output message="tns:ExistePersonaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaPersona">
+      <wsdl:input message="tns:EliminaPersonaHttpGetIn" />
+      <wsdl:output message="tns:EliminaPersonaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoContacto">
+      <wsdl:input message="tns:RetornaTipoContactoHttpGetIn" />
+      <wsdl:output message="tns:RetornaTipoContactoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoContacto">
+      <wsdl:input message="tns:InsertaTipoContactoHttpGetIn" />
+      <wsdl:output message="tns:InsertaTipoContactoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoIdentificador">
+      <wsdl:input message="tns:RetornaTipoIdentificadorHttpGetIn" />
+      <wsdl:output message="tns:RetornaTipoIdentificadorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoIdentificador">
+      <wsdl:input message="tns:InsertaTipoIdentificadorHttpGetIn" />
+      <wsdl:output message="tns:InsertaTipoIdentificadorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaContacto">
+      <wsdl:input message="tns:InsertaContactoHttpGetIn" />
+      <wsdl:output message="tns:InsertaContactoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaContacto">
+      <wsdl:input message="tns:ModificaContactoHttpGetIn" />
+      <wsdl:output message="tns:ModificaContactoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaIndentificador">
+      <wsdl:input message="tns:InsertaIndentificadorHttpGetIn" />
+      <wsdl:output message="tns:InsertaIndentificadorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaIndentificador">
+      <wsdl:input message="tns:ModificaIndentificadorHttpGetIn" />
+      <wsdl:output message="tns:ModificaIndentificadorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaParada">
+      <wsdl:input message="tns:InsertaParadaHttpGetIn" />
+      <wsdl:output message="tns:InsertaParadaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaParada">
+      <wsdl:input message="tns:ModificaParadaHttpGetIn" />
+      <wsdl:output message="tns:ModificaParadaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaParada">
+      <wsdl:input message="tns:EliminaParadaHttpGetIn" />
+      <wsdl:output message="tns:EliminaParadaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaParada">
+      <wsdl:input message="tns:RetornaParadaHttpGetIn" />
+      <wsdl:output message="tns:RetornaParadaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteParada">
+      <wsdl:input message="tns:ExisteParadaHttpGetIn" />
+      <wsdl:output message="tns:ExisteParadaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Prueba">
+      <wsdl:input message="tns:PruebaHttpGetIn" />
+      <wsdl:output message="tns:PruebaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaRegistro">
+      <wsdl:input message="tns:InsertaRegistroHttpGetIn" />
+      <wsdl:output message="tns:InsertaRegistroHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteRegistro">
+      <wsdl:input message="tns:ExisteRegistroHttpGetIn" />
+      <wsdl:output message="tns:ExisteRegistroHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaRegistro">
+      <wsdl:input message="tns:ModificaRegistroHttpGetIn" />
+      <wsdl:output message="tns:ModificaRegistroHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaColegio">
+      <wsdl:input message="tns:InsertaColegioHttpGetIn" />
+      <wsdl:output message="tns:InsertaColegioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteColegio">
+      <wsdl:input message="tns:ExisteColegioHttpGetIn" />
+      <wsdl:output message="tns:ExisteColegioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaColegio">
+      <wsdl:input message="tns:RetornaColegioHttpGetIn" />
+      <wsdl:output message="tns:RetornaColegioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaEncargado">
+      <wsdl:input message="tns:InsertaEncargadoHttpGetIn" />
+      <wsdl:output message="tns:InsertaEncargadoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InfoEstudiante">
+      <wsdl:input message="tns:InfoEstudianteHttpGetIn" />
+      <wsdl:output message="tns:InfoEstudianteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InfoPagos">
+      <wsdl:input message="tns:InfoPagosHttpGetIn" />
+      <wsdl:output message="tns:InfoPagosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InfoHistorial">
+      <wsdl:input message="tns:InfoHistorialHttpGetIn" />
+      <wsdl:output message="tns:InfoHistorialHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="TransportWSHttpPost">
+  <wsdl:portType name="TransportServiceHttpPost">
+    <wsdl:operation name="ValidaConexion">
+      <wsdl:input message="tns:ValidaConexionHttpPostIn" />
+      <wsdl:output message="tns:ValidaConexionHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="Saludo">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo de retorna un saludo.</wsdl:documentation>
       <wsdl:input message="tns:SaludoHttpPostIn" />
       <wsdl:output message="tns:SaludoHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetUsuarios">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retorna una lista de todos los usuarios que se encuentran en la base de datos.</wsdl:documentation>
-      <wsdl:input message="tns:GetUsuariosHttpPostIn" />
-      <wsdl:output message="tns:GetUsuariosHttpPostOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ExisteUsuario">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo que valida la existencia de un usuario.</wsdl:documentation>
-      <wsdl:input message="tns:ExisteUsuarioHttpPostIn" />
-      <wsdl:output message="tns:ExisteUsuarioHttpPostOut" />
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginHttpPostIn" />
+      <wsdl:output message="tns:LoginHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="InsertaUsuario">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Metodo que inserta un Usuario.</wsdl:documentation>
       <wsdl:input message="tns:InsertaUsuarioHttpPostIn" />
       <wsdl:output message="tns:InsertaUsuarioHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="RetornaUsuario">
+      <wsdl:input message="tns:RetornaUsuarioHttpPostIn" />
+      <wsdl:output message="tns:RetornaUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteUsuario">
+      <wsdl:input message="tns:ExisteUsuarioHttpPostIn" />
+      <wsdl:output message="tns:ExisteUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuario">
+      <wsdl:input message="tns:EliminaUsuarioHttpPostIn" />
+      <wsdl:output message="tns:EliminaUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUsuario">
+      <wsdl:input message="tns:ModificaUsuarioHttpPostIn" />
+      <wsdl:output message="tns:ModificaUsuarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaPersona">
+      <wsdl:input message="tns:InsertaPersonaHttpPostIn" />
+      <wsdl:output message="tns:InsertaPersonaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaPersona">
+      <wsdl:input message="tns:ModificaPersonaHttpPostIn" />
+      <wsdl:output message="tns:ModificaPersonaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaPersona">
+      <wsdl:input message="tns:RetornaPersonaHttpPostIn" />
+      <wsdl:output message="tns:RetornaPersonaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistePersona">
+      <wsdl:input message="tns:ExistePersonaHttpPostIn" />
+      <wsdl:output message="tns:ExistePersonaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaPersona">
+      <wsdl:input message="tns:EliminaPersonaHttpPostIn" />
+      <wsdl:output message="tns:EliminaPersonaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoContacto">
+      <wsdl:input message="tns:RetornaTipoContactoHttpPostIn" />
+      <wsdl:output message="tns:RetornaTipoContactoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoContacto">
+      <wsdl:input message="tns:InsertaTipoContactoHttpPostIn" />
+      <wsdl:output message="tns:InsertaTipoContactoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoIdentificador">
+      <wsdl:input message="tns:RetornaTipoIdentificadorHttpPostIn" />
+      <wsdl:output message="tns:RetornaTipoIdentificadorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoIdentificador">
+      <wsdl:input message="tns:InsertaTipoIdentificadorHttpPostIn" />
+      <wsdl:output message="tns:InsertaTipoIdentificadorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaContacto">
+      <wsdl:input message="tns:InsertaContactoHttpPostIn" />
+      <wsdl:output message="tns:InsertaContactoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaContacto">
+      <wsdl:input message="tns:ModificaContactoHttpPostIn" />
+      <wsdl:output message="tns:ModificaContactoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaIndentificador">
+      <wsdl:input message="tns:InsertaIndentificadorHttpPostIn" />
+      <wsdl:output message="tns:InsertaIndentificadorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaIndentificador">
+      <wsdl:input message="tns:ModificaIndentificadorHttpPostIn" />
+      <wsdl:output message="tns:ModificaIndentificadorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaParada">
+      <wsdl:input message="tns:InsertaParadaHttpPostIn" />
+      <wsdl:output message="tns:InsertaParadaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaParada">
+      <wsdl:input message="tns:ModificaParadaHttpPostIn" />
+      <wsdl:output message="tns:ModificaParadaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaParada">
+      <wsdl:input message="tns:EliminaParadaHttpPostIn" />
+      <wsdl:output message="tns:EliminaParadaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaParada">
+      <wsdl:input message="tns:RetornaParadaHttpPostIn" />
+      <wsdl:output message="tns:RetornaParadaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteParada">
+      <wsdl:input message="tns:ExisteParadaHttpPostIn" />
+      <wsdl:output message="tns:ExisteParadaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Prueba">
+      <wsdl:input message="tns:PruebaHttpPostIn" />
+      <wsdl:output message="tns:PruebaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaRegistro">
+      <wsdl:input message="tns:InsertaRegistroHttpPostIn" />
+      <wsdl:output message="tns:InsertaRegistroHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteRegistro">
+      <wsdl:input message="tns:ExisteRegistroHttpPostIn" />
+      <wsdl:output message="tns:ExisteRegistroHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaRegistro">
+      <wsdl:input message="tns:ModificaRegistroHttpPostIn" />
+      <wsdl:output message="tns:ModificaRegistroHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaColegio">
+      <wsdl:input message="tns:InsertaColegioHttpPostIn" />
+      <wsdl:output message="tns:InsertaColegioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteColegio">
+      <wsdl:input message="tns:ExisteColegioHttpPostIn" />
+      <wsdl:output message="tns:ExisteColegioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetornaColegio">
+      <wsdl:input message="tns:RetornaColegioHttpPostIn" />
+      <wsdl:output message="tns:RetornaColegioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertaEncargado">
+      <wsdl:input message="tns:InsertaEncargadoHttpPostIn" />
+      <wsdl:output message="tns:InsertaEncargadoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InfoEstudiante">
+      <wsdl:input message="tns:InfoEstudianteHttpPostIn" />
+      <wsdl:output message="tns:InfoEstudianteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InfoPagos">
+      <wsdl:input message="tns:InfoPagosHttpPostIn" />
+      <wsdl:output message="tns:InfoPagosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InfoHistorial">
+      <wsdl:input message="tns:InfoHistorialHttpPostIn" />
+      <wsdl:output message="tns:InfoHistorialHttpPostOut" />
+    </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="TransportWSSoap" type="tns:TransportWSSoap">
+  <wsdl:binding name="TransportServiceSoap" type="tns:TransportServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidaConexion">
+      <soap:operation soapAction="http://www.transportservice.com/ValidaConexion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Saludo">
       <soap:operation soapAction="http://www.transportservice.com/Saludo" style="document" />
       <wsdl:input>
@@ -213,17 +1777,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUsuarios">
-      <soap:operation soapAction="http://www.transportservice.com/GetUsuarios" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ExisteUsuario">
-      <soap:operation soapAction="http://www.transportservice.com/ExisteUsuario" style="document" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://www.transportservice.com/Login" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -240,9 +1795,315 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RetornaUsuario">
+      <soap:operation soapAction="http://www.transportservice.com/RetornaUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteUsuario">
+      <soap:operation soapAction="http://www.transportservice.com/ExisteUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuario">
+      <soap:operation soapAction="http://www.transportservice.com/EliminaUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUsuario">
+      <soap:operation soapAction="http://www.transportservice.com/ModificaUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaPersona">
+      <soap:operation soapAction="http://www.transportservice.com/InsertaPersona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaPersona">
+      <soap:operation soapAction="http://www.transportservice.com/ModificaPersona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaPersona">
+      <soap:operation soapAction="http://www.transportservice.com/RetornaPersona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistePersona">
+      <soap:operation soapAction="http://www.transportservice.com/ExistePersona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaPersona">
+      <soap:operation soapAction="http://www.transportservice.com/EliminaPersona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoContacto">
+      <soap:operation soapAction="http://www.transportservice.com/RetornaTipoContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoContacto">
+      <soap:operation soapAction="http://www.transportservice.com/InsertaTipoContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoIdentificador">
+      <soap:operation soapAction="http://www.transportservice.com/RetornaTipoIdentificador" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoIdentificador">
+      <soap:operation soapAction="http://www.transportservice.com/InsertaTipoIdentificador" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaContacto">
+      <soap:operation soapAction="http://www.transportservice.com/InsertaContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaContacto">
+      <soap:operation soapAction="http://www.transportservice.com/ModificaContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaIndentificador">
+      <soap:operation soapAction="http://www.transportservice.com/InsertaIndentificador" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaIndentificador">
+      <soap:operation soapAction="http://www.transportservice.com/ModificaIndentificador" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaParada">
+      <soap:operation soapAction="http://www.transportservice.com/InsertaParada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaParada">
+      <soap:operation soapAction="http://www.transportservice.com/ModificaParada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaParada">
+      <soap:operation soapAction="http://www.transportservice.com/EliminaParada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaParada">
+      <soap:operation soapAction="http://www.transportservice.com/RetornaParada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteParada">
+      <soap:operation soapAction="http://www.transportservice.com/ExisteParada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Prueba">
+      <soap:operation soapAction="http://www.transportservice.com/Prueba" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaRegistro">
+      <soap:operation soapAction="http://www.transportservice.com/InsertaRegistro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteRegistro">
+      <soap:operation soapAction="http://www.transportservice.com/ExisteRegistro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaRegistro">
+      <soap:operation soapAction="http://www.transportservice.com/ModificaRegistro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaColegio">
+      <soap:operation soapAction="http://www.transportservice.com/InsertaColegio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteColegio">
+      <soap:operation soapAction="http://www.transportservice.com/ExisteColegio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaColegio">
+      <soap:operation soapAction="http://www.transportservice.com/RetornaColegio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaEncargado">
+      <soap:operation soapAction="http://www.transportservice.com/InsertaEncargado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoEstudiante">
+      <soap:operation soapAction="http://www.transportservice.com/InfoEstudiante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoPagos">
+      <soap:operation soapAction="http://www.transportservice.com/InfoPagos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoHistorial">
+      <soap:operation soapAction="http://www.transportservice.com/InfoHistorial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="TransportWSSoap12" type="tns:TransportWSSoap">
+  <wsdl:binding name="TransportServiceSoap12" type="tns:TransportServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidaConexion">
+      <soap12:operation soapAction="http://www.transportservice.com/ValidaConexion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Saludo">
       <soap12:operation soapAction="http://www.transportservice.com/Saludo" style="document" />
       <wsdl:input>
@@ -252,17 +2113,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUsuarios">
-      <soap12:operation soapAction="http://www.transportservice.com/GetUsuarios" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ExisteUsuario">
-      <soap12:operation soapAction="http://www.transportservice.com/ExisteUsuario" style="document" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://www.transportservice.com/Login" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -279,9 +2131,315 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RetornaUsuario">
+      <soap12:operation soapAction="http://www.transportservice.com/RetornaUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteUsuario">
+      <soap12:operation soapAction="http://www.transportservice.com/ExisteUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaUsuario">
+      <soap12:operation soapAction="http://www.transportservice.com/EliminaUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUsuario">
+      <soap12:operation soapAction="http://www.transportservice.com/ModificaUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaPersona">
+      <soap12:operation soapAction="http://www.transportservice.com/InsertaPersona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaPersona">
+      <soap12:operation soapAction="http://www.transportservice.com/ModificaPersona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaPersona">
+      <soap12:operation soapAction="http://www.transportservice.com/RetornaPersona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistePersona">
+      <soap12:operation soapAction="http://www.transportservice.com/ExistePersona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaPersona">
+      <soap12:operation soapAction="http://www.transportservice.com/EliminaPersona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoContacto">
+      <soap12:operation soapAction="http://www.transportservice.com/RetornaTipoContacto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoContacto">
+      <soap12:operation soapAction="http://www.transportservice.com/InsertaTipoContacto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoIdentificador">
+      <soap12:operation soapAction="http://www.transportservice.com/RetornaTipoIdentificador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoIdentificador">
+      <soap12:operation soapAction="http://www.transportservice.com/InsertaTipoIdentificador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaContacto">
+      <soap12:operation soapAction="http://www.transportservice.com/InsertaContacto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaContacto">
+      <soap12:operation soapAction="http://www.transportservice.com/ModificaContacto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaIndentificador">
+      <soap12:operation soapAction="http://www.transportservice.com/InsertaIndentificador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaIndentificador">
+      <soap12:operation soapAction="http://www.transportservice.com/ModificaIndentificador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaParada">
+      <soap12:operation soapAction="http://www.transportservice.com/InsertaParada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaParada">
+      <soap12:operation soapAction="http://www.transportservice.com/ModificaParada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaParada">
+      <soap12:operation soapAction="http://www.transportservice.com/EliminaParada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaParada">
+      <soap12:operation soapAction="http://www.transportservice.com/RetornaParada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteParada">
+      <soap12:operation soapAction="http://www.transportservice.com/ExisteParada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Prueba">
+      <soap12:operation soapAction="http://www.transportservice.com/Prueba" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaRegistro">
+      <soap12:operation soapAction="http://www.transportservice.com/InsertaRegistro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteRegistro">
+      <soap12:operation soapAction="http://www.transportservice.com/ExisteRegistro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaRegistro">
+      <soap12:operation soapAction="http://www.transportservice.com/ModificaRegistro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaColegio">
+      <soap12:operation soapAction="http://www.transportservice.com/InsertaColegio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteColegio">
+      <soap12:operation soapAction="http://www.transportservice.com/ExisteColegio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaColegio">
+      <soap12:operation soapAction="http://www.transportservice.com/RetornaColegio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaEncargado">
+      <soap12:operation soapAction="http://www.transportservice.com/InsertaEncargado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoEstudiante">
+      <soap12:operation soapAction="http://www.transportservice.com/InfoEstudiante" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoPagos">
+      <soap12:operation soapAction="http://www.transportservice.com/InfoPagos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoHistorial">
+      <soap12:operation soapAction="http://www.transportservice.com/InfoHistorial" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="TransportWSHttpGet" type="tns:TransportWSHttpGet">
+  <wsdl:binding name="TransportServiceHttpGet" type="tns:TransportServiceHttpGet">
     <http:binding verb="GET" />
+    <wsdl:operation name="ValidaConexion">
+      <http:operation location="/ValidaConexion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Saludo">
       <http:operation location="/Saludo" />
       <wsdl:input>
@@ -291,8 +2449,26 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUsuarios">
-      <http:operation location="/GetUsuarios" />
+    <wsdl:operation name="Login">
+      <http:operation location="/Login" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaUsuario">
+      <http:operation location="/InsertaUsuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaUsuario">
+      <http:operation location="/RetornaUsuario" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -309,16 +2485,295 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertaUsuario">
-      <http:operation location="/InsertaUsuario" />
+    <wsdl:operation name="EliminaUsuario">
+      <http:operation location="/EliminaUsuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUsuario">
+      <http:operation location="/ModificaUsuario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaPersona">
+      <http:operation location="/InsertaPersona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaPersona">
+      <http:operation location="/ModificaPersona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaPersona">
+      <http:operation location="/RetornaPersona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistePersona">
+      <http:operation location="/ExistePersona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaPersona">
+      <http:operation location="/EliminaPersona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoContacto">
+      <http:operation location="/RetornaTipoContacto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoContacto">
+      <http:operation location="/InsertaTipoContacto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoIdentificador">
+      <http:operation location="/RetornaTipoIdentificador" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoIdentificador">
+      <http:operation location="/InsertaTipoIdentificador" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaContacto">
+      <http:operation location="/InsertaContacto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaContacto">
+      <http:operation location="/ModificaContacto" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaIndentificador">
+      <http:operation location="/InsertaIndentificador" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaIndentificador">
+      <http:operation location="/ModificaIndentificador" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaParada">
+      <http:operation location="/InsertaParada" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaParada">
+      <http:operation location="/ModificaParada" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaParada">
+      <http:operation location="/EliminaParada" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaParada">
+      <http:operation location="/RetornaParada" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteParada">
+      <http:operation location="/ExisteParada" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Prueba">
+      <http:operation location="/Prueba" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="InsertaRegistro">
+      <http:operation location="/InsertaRegistro" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteRegistro">
+      <http:operation location="/ExisteRegistro" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaRegistro">
+      <http:operation location="/ModificaRegistro" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaColegio">
+      <http:operation location="/InsertaColegio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteColegio">
+      <http:operation location="/ExisteColegio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaColegio">
+      <http:operation location="/RetornaColegio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaEncargado">
+      <http:operation location="/InsertaEncargado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoEstudiante">
+      <http:operation location="/InfoEstudiante" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoPagos">
+      <http:operation location="/InfoPagos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoHistorial">
+      <http:operation location="/InfoHistorial" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="TransportWSHttpPost" type="tns:TransportWSHttpPost">
+  <wsdl:binding name="TransportServiceHttpPost" type="tns:TransportServiceHttpPost">
     <http:binding verb="POST" />
+    <wsdl:operation name="ValidaConexion">
+      <http:operation location="/ValidaConexion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Saludo">
       <http:operation location="/Saludo" />
       <wsdl:input>
@@ -328,8 +2783,26 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUsuarios">
-      <http:operation location="/GetUsuarios" />
+    <wsdl:operation name="Login">
+      <http:operation location="/Login" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaUsuario">
+      <http:operation location="/InsertaUsuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaUsuario">
+      <http:operation location="/RetornaUsuario" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -346,25 +2819,296 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertaUsuario">
-      <http:operation location="/InsertaUsuario" />
+    <wsdl:operation name="EliminaUsuario">
+      <http:operation location="/EliminaUsuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUsuario">
+      <http:operation location="/ModificaUsuario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaPersona">
+      <http:operation location="/InsertaPersona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaPersona">
+      <http:operation location="/ModificaPersona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaPersona">
+      <http:operation location="/RetornaPersona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistePersona">
+      <http:operation location="/ExistePersona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaPersona">
+      <http:operation location="/EliminaPersona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoContacto">
+      <http:operation location="/RetornaTipoContacto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoContacto">
+      <http:operation location="/InsertaTipoContacto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaTipoIdentificador">
+      <http:operation location="/RetornaTipoIdentificador" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaTipoIdentificador">
+      <http:operation location="/InsertaTipoIdentificador" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaContacto">
+      <http:operation location="/InsertaContacto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaContacto">
+      <http:operation location="/ModificaContacto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaIndentificador">
+      <http:operation location="/InsertaIndentificador" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaIndentificador">
+      <http:operation location="/ModificaIndentificador" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaParada">
+      <http:operation location="/InsertaParada" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaParada">
+      <http:operation location="/ModificaParada" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaParada">
+      <http:operation location="/EliminaParada" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaParada">
+      <http:operation location="/RetornaParada" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteParada">
+      <http:operation location="/ExisteParada" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Prueba">
+      <http:operation location="/Prueba" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="InsertaRegistro">
+      <http:operation location="/InsertaRegistro" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteRegistro">
+      <http:operation location="/ExisteRegistro" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaRegistro">
+      <http:operation location="/ModificaRegistro" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaColegio">
+      <http:operation location="/InsertaColegio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteColegio">
+      <http:operation location="/ExisteColegio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetornaColegio">
+      <http:operation location="/RetornaColegio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertaEncargado">
+      <http:operation location="/InsertaEncargado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoEstudiante">
+      <http:operation location="/InfoEstudiante" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoPagos">
+      <http:operation location="/InfoPagos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InfoHistorial">
+      <http:operation location="/InfoHistorial" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="TransportWS">
-    <wsdl:port name="TransportWSSoap" binding="tns:TransportWSSoap">
+  <wsdl:service name="TransportService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Service. ULACIT IIIC0 2019</wsdl:documentation>
+    <wsdl:port name="TransportServiceSoap" binding="tns:TransportServiceSoap">
       <soap:address location="http://3.135.223.148:5000/TransportWS.asmx" />
     </wsdl:port>
-    <wsdl:port name="TransportWSSoap12" binding="tns:TransportWSSoap12">
+    <wsdl:port name="TransportServiceSoap12" binding="tns:TransportServiceSoap12">
       <soap12:address location="http://3.135.223.148:5000/TransportWS.asmx" />
     </wsdl:port>
-    <wsdl:port name="TransportWSHttpGet" binding="tns:TransportWSHttpGet">
+    <wsdl:port name="TransportServiceHttpGet" binding="tns:TransportServiceHttpGet">
       <http:address location="http://3.135.223.148:5000/TransportWS.asmx" />
     </wsdl:port>
-    <wsdl:port name="TransportWSHttpPost" binding="tns:TransportWSHttpPost">
+    <wsdl:port name="TransportServiceHttpPost" binding="tns:TransportServiceHttpPost">
       <http:address location="http://3.135.223.148:5000/TransportWS.asmx" />
     </wsdl:port>
   </wsdl:service>

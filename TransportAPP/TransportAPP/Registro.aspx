@@ -65,8 +65,8 @@
 						<div class="w3menu navbar-right">
 							<ul class="nav navbar">
 								<li><a href="Home.aspx" >Inicio</a></li>
-								<li><a href="registrarse.html" class="active">Registrarse</a></li>
-								<li><a href="gallery.html">Galeria</a></li>
+								<li><a href="Registro.aspx" class="active">Registrarse</a></li>
+								<li><a href="Login.aspx">Login</a></li>
 								<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span data-letters="Pages">Acceso Usuarios</span><span class="caret"></span></a>
 									<ul class="dropdown-menu"> 
 										<li><a href=""><b>¡CLICK AQUÍ!...Para "Usuarios"</b></a></li>
@@ -118,6 +118,9 @@
 						<asp:Label ID="Lbl_ConfContraseña" runat="server"  Font-Size="20pt" Text="Confirmar contraseña" CssClass="auto-style4"></asp:Label>
                         </h2><br />
                         <asp:TextBox ID="txt_ConfContraseña" runat="server" TextMode="Password" CssClass="auto-style7"></asp:TextBox><br />
+                        <br />
+
+                        <asp:Label runat="server" ID="Txt_Mensaje" Text="" ForeColor="Red"></asp:Label>
                         <br />
 						<asp:Button ID="Btn_Verificar" runat="server" Text="Verificar" OnClick="Btn_Verificar_Click"/>
 

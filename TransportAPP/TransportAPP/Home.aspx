@@ -50,7 +50,7 @@
 							<ul class="nav navbar">
 								<li><a href="index.html" class="active">Inicio</a></li>
 								<li><a href="Registro.aspx">Registarse</a></li> 
-								<li><a href="gallery.html">Galeria</a></li>
+								<li><a href="Login.aspx">Login</a></li>
 								<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span data-letters="Pages">Acceso Usuarios</span><span class="caret"></span></a>
 									<ul class="dropdown-menu"> 
 										<li><a href=""><b>¡CLICK AQUÍ!...Para "Usuarios"</b></a></li>
@@ -109,7 +109,7 @@
 							<p>Click Aquí</p>
 						</div>
 						<div class="features-w3lright">
-							<a href="#" class="w3ls-login" data-toggle="modal" data-target="#myModal1">Login</a>
+							<a href="Login.aspx" class="w3ls-login" data-toggle="modal" data-target="#myModal1">Login</a>
 						</div>
 						<div class="clearfix"> </div>
 					</div> 
@@ -359,55 +359,55 @@
 	<script src="js/SmoothScroll.min.js"></script> 
 	<script src="js/jarallax.js"></script> 
 	<script type="text/javascript">
-		/* init Jarallax */
-		$('.jarallax').jarallax({
-			speed: 0.5,
-			imgWidth: 1366,
-			imgHeight: 768
-		})
+        /* init Jarallax */
+        $('.jarallax').jarallax({
+            speed: 0.5,
+            imgWidth: 1366,
+            imgHeight: 768
+        })
 	</script>  
 	<!-- //js -->
 	<!-- FlexSlider --> 
 	<script defer src="js/jquery.flexslider.js"></script>
 	<script type="text/javascript">
-		$(window).load(function(){
-		  $('.flexslider').flexslider({
-			animation: "slide",
-			start: function(slider){
-			  $('body').removeClass('loading');
-			}
-		  });
-		});
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
 	</script>
 	<!-- //End-FlexSlider --> 
 	<!-- flexSlider -->  
 	<script type="text/javascript">
-		$(window).load(function(){
-		  $('.flexslider1').flexslider({
-			animation: "slide",
-			start: function(slider){
-			  $('body').removeClass('loading');
-			}
-		  });
-		});
+        $(window).load(function () {
+            $('.flexslider1').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
 	</script>
 	<!-- //flexSlider -->	
 	<!-- start-smooth-scrolling --> 
 	<script type="text/javascript" src="js/move-top.js"></script>
 	<script type="text/javascript" src="js/easing.js"></script>	
 	<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
-					event.preventDefault();
-			
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
 	</script>
 	<!-- //end-smooth-scrolling -->	 
 	<!-- smooth-scrolling-of-move-up -->
 	<script type="text/javascript">
-		$(document).ready(function() {
+        $(document).ready(function () {
 			/*
 			var defaults = {
 				containerID: 'toTop', // fading element id
@@ -416,10 +416,10 @@
 				easingType: 'linear' 
 			};
 			*/
-			
-			$().UItoTop({ easingType: 'easeOutQuart' });
-			
-		});
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
 	</script>
 	<!-- //smooth-scrolling-of-move-up -->  
 	<!-- Bootstrap core JavaScript
