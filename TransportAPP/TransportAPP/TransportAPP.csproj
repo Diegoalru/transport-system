@@ -67,6 +67,71 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Css\css\bootstrap.css" />
+    <Content Include="Css\css\flexslider.css" />
+    <Content Include="Css\css\font-awesome.css" />
+    <Content Include="Css\css\simplelightbox.min.css" />
+    <Content Include="Css\css\style.css" />
+    <Content Include="Css\fonts\fontawesome-webfont.svg" />
+    <Content Include="Css\images\bg.jpg" />
+    <Content Include="Css\images\bg1.jpg" />
+    <Content Include="Css\images\bg111.jpg" />
+    <Content Include="Css\images\bus-costa.jpg" />
+    <Content Include="Css\images\bus-naranja.jpg" />
+    <Content Include="Css\images\bus-negrorojo.jpg" />
+    <Content Include="Css\images\bus-san-jose.jpg" />
+    <Content Include="Css\images\bus-verde.jpg" />
+    <Content Include="Css\images\chevrolet.jpg" />
+    <Content Include="Css\images\ford.png" />
+    <Content Include="Css\images\ford2.jpg" />
+    <Content Include="Css\images\ford2.png" />
+    <Content Include="Css\images\fordtransit 350.jpg" />
+    <Content Include="Css\images\g1.jpg" />
+    <Content Include="Css\images\g2.jpg" />
+    <Content Include="Css\images\g3.jpg" />
+    <Content Include="Css\images\g4.jpg" />
+    <Content Include="Css\images\h10.png" />
+    <Content Include="Css\images\hiace.png" />
+    <Content Include="Css\images\hyundai.jpg" />
+    <Content Include="Css\images\img1.jpg" />
+    <Content Include="Css\images\img11.jpg" />
+    <Content Include="Css\images\img2.jpg" />
+    <Content Include="Css\images\img3.jpg" />
+    <Content Include="Css\images\img4.jpg" />
+    <Content Include="Css\images\img5.png" />
+    <Content Include="Css\images\img55.png" />
+    <Content Include="Css\images\mercedes.png" />
+    <Content Include="Css\images\modernbus.gif" />
+    <Content Include="Css\images\move-up.png" />
+    <Content Include="Css\images\overlay.png" />
+    <Content Include="Css\images\remplazo bus amarillo.jpg" />
+    <Content Include="Css\images\remplazo img 2.jpg" />
+    <Content Include="Css\images\remplazo img 3.jpg" />
+    <Content Include="Css\images\remplazo.jpg" />
+    <Content Include="Css\images\responsive web.jpg" />
+    <Content Include="Css\images\riteve.jpg" />
+    <Content Include="Css\images\schedule.gif" />
+    <Content Include="Css\images\t1.jpg" />
+    <Content Include="Css\images\t3.jpg" />
+    <Content Include="Css\images\t4.jpg" />
+    <Content Include="Css\images\t44.jpg" />
+    <Content Include="Css\images\t5.jpg" />
+    <Content Include="Css\images\t55.jpg" />
+    <Content Include="Css\images\t6.jpg" />
+    <Content Include="Css\images\t7.jpg" />
+    <Content Include="Css\images\t8.jpg" />
+    <Content Include="Css\images\t9.jpg" />
+    <Content Include="Css\js\bootstrap.js" />
+    <Content Include="Css\js\easing.js" />
+    <Content Include="Css\js\jarallax.js" />
+    <Content Include="Css\js\jquery-2.2.3.min.js" />
+    <Content Include="Css\js\jquery.flexslider.js" />
+    <Content Include="Css\js\move-top.js" />
+    <Content Include="Css\js\numscroller-1.0.js" />
+    <Content Include="Css\js\simple-lightbox.min.js" />
+    <Content Include="Css\js\SmoothScroll.min.js" />
+    <Content Include="Home.aspx" />
+    <Content Include="Registro.aspx" />
     <Content Include="source\css\ajax-loader.gif" />
     <Content Include="source\css\animate.css" />
     <Content Include="source\css\aos.css" />
@@ -90,6 +155,13 @@
     <Content Include="source\css\.DS_Store" />
     <Content Include="source\css\bootstrap\.DS_Store" />
     <Content Include="source\css\css\.DS_Store" />
+    <Content Include="Css\fonts\fontawesome-webfont.eot" />
+    <Content Include="Css\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Css\fonts\fontawesome-webfont.woff" />
+    <Content Include="Css\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Css\fonts\FontAwesome.otf" />
+    <Content Include="Css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Css\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -168,6 +240,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -180,6 +259,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Registro.aspx.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registro.aspx.designer.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\WebReference\Reference.cs">
       <AutoGen>True</AutoGen>

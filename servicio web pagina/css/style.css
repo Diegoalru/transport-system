@@ -979,7 +979,7 @@ a.play-icon.popup-with-zoom-anim {
 } 
 /*-- //gallery --*/   
 /*-- contact --*/  
-.contact input[type="text"],.contact input[type="email"]{
+.contact input[type="text"],.contact input[type="email"], .contact input[type="password"]{
     width: 47.7%;
     color: #999;
     float: left;
@@ -1941,7 +1941,7 @@ P {
     top: 165%;
     left: 94%;
 }
-.contact input[type="text"], .contact input[type="email"] {
+.contact input[type="text"], .contact input[type="email"], .contact input[type="password"] {
     width: 100%; 
     font-size: 0.9em; 
     margin-bottom: 1em; 
