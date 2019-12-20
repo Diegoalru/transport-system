@@ -132,29 +132,7 @@
     <Content Include="Css\js\SmoothScroll.min.js" />
     <Content Include="Home.aspx" />
     <Content Include="Registro.aspx" />
-    <Content Include="source\css\ajax-loader.gif" />
-    <Content Include="source\css\animate.css" />
-    <Content Include="source\css\aos.css" />
-    <Content Include="source\css\bootstrap-datepicker.css" />
-    <Content Include="source\css\bootstrap.min.css" />
-    <Content Include="source\css\bootstrap\bootstrap-grid.css" />
-    <Content Include="source\css\bootstrap\bootstrap-reboot.css" />
-    <Content Include="source\css\css\bootstrap-reboot.css" />
-    <Content Include="source\css\css\mixins\_text-hide.css" />
-    <Content Include="source\css\flaticon.css" />
-    <Content Include="source\css\icomoon.css" />
-    <Content Include="source\css\ionicons.min.css" />
-    <Content Include="source\css\jquery.timepicker.css" />
-    <Content Include="source\css\magnific-popup.css" />
-    <Content Include="source\css\open-iconic-bootstrap.min.css" />
-    <Content Include="source\css\owl.carousel.min.css" />
-    <Content Include="source\css\owl.theme.default.min.css" />
-    <Content Include="source\css\style.css" />
     <Content Include="Global.asax" />
-    <Content Include="index.aspx" />
-    <Content Include="source\css\.DS_Store" />
-    <Content Include="source\css\bootstrap\.DS_Store" />
-    <Content Include="source\css\css\.DS_Store" />
     <Content Include="Css\fonts\fontawesome-webfont.eot" />
     <Content Include="Css\fonts\fontawesome-webfont.ttf" />
     <Content Include="Css\fonts\fontawesome-webfont.woff" />
@@ -166,73 +144,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="source\fonts\flaticon\backup.txt" />
-    <Content Include="source\fonts\flaticon\font\flaticon.css" />
-    <Content Include="source\fonts\flaticon\font\flaticon.html" />
-    <Content Include="source\fonts\flaticon\font\Flaticon.svg" />
-    <Content Include="source\fonts\icomoon\icomoon.svg" />
-    <Content Include="source\fonts\ionicons\css\ionicons.min.css" />
-    <Content Include="source\fonts\ionicons\fonts\ionicons.svg" />
-    <Content Include="source\fonts\open-iconic\open-iconic.svg" />
-    <Content Include="source\images\49944.png" />
-    <Content Include="source\images\amigos.png" />
-    <Content Include="source\images\buss.jpg" />
-    <Content Include="source\images\busscolar.jpg" />
-    <Content Include="source\images\huella.png" />
-    <Content Include="source\images\iconTSD.png" />
-    <Content Include="source\images\loc.png" />
-    <Content Include="source\images\persona5.jpg" />
-    <Content Include="source\images\person_1.jpg" />
-    <Content Include="source\images\person_2.jpg" />
-    <Content Include="source\images\person_3.jpg" />
-    <Content Include="source\images\person_4.jpg" />
-    <Content Include="source\images\transportTSD.PNG" />
-    <Content Include="source\images\wifi2.png" />
-    <Content Include="source\js\aos.js" />
-    <Content Include="source\js\bootstrap-datepicker.js" />
-    <Content Include="source\js\bootstrap.min.js" />
-    <Content Include="source\js\google-map.js" />
-    <Content Include="source\js\jquery-3.2.1.min.js" />
-    <Content Include="source\js\jquery-migrate-3.0.1.min.js" />
-    <Content Include="source\js\jquery.animateNumber.min.js" />
-    <Content Include="source\js\jquery.easing.1.3.js" />
-    <Content Include="source\js\jquery.magnific-popup.min.js" />
-    <Content Include="source\js\jquery.min.js" />
-    <Content Include="source\js\jquery.stellar.min.js" />
-    <Content Include="source\js\jquery.timepicker.min.js" />
-    <Content Include="source\js\jquery.waypoints.min.js" />
-    <Content Include="source\js\main.js" />
-    <Content Include="source\js\owl.carousel.min.js" />
-    <Content Include="source\js\popper.min.js" />
-    <Content Include="source\js\range.js" />
-    <Content Include="source\js\scrollax.min.js" />
     <Content Include="Web References\WebReference\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
-    <Content Include="source\images\.DS_Store" />
-    <Content Include="source\js\.DS_Store" />
-    <Content Include="source\fonts\.DS_Store" />
-    <Content Include="source\fonts\flaticon\.DS_Store" />
-    <Content Include="source\fonts\flaticon\font\Flaticon.eot" />
-    <Content Include="source\fonts\flaticon\font\Flaticon.ttf" />
-    <Content Include="source\fonts\flaticon\font\Flaticon.woff" />
-    <Content Include="source\fonts\flaticon\font\Flaticon.woff2" />
-    <Content Include="source\fonts\flaticon\font\_flaticon.scss" />
-    <Content Include="source\fonts\flaticon\license\license.pdf" />
-    <Content Include="source\fonts\icomoon\icomoon.eot" />
-    <Content Include="source\fonts\icomoon\icomoon.ttf" />
-    <Content Include="source\fonts\icomoon\icomoon.woff" />
-    <Content Include="source\fonts\ionicons\css\_ionicons.scss" />
-    <Content Include="source\fonts\ionicons\fonts\.DS_Store" />
-    <Content Include="source\fonts\ionicons\fonts\ionicons.eot" />
-    <Content Include="source\fonts\ionicons\fonts\ionicons.ttf" />
-    <Content Include="source\fonts\ionicons\fonts\ionicons.woff" />
-    <Content Include="source\fonts\ionicons\fonts\ionicons.woff2" />
-    <Content Include="source\fonts\open-iconic\open-iconic.eot" />
-    <Content Include="source\fonts\open-iconic\open-iconic.otf" />
-    <Content Include="source\fonts\open-iconic\open-iconic.ttf" />
-    <Content Include="source\fonts\open-iconic\open-iconic.woff" />
     <None Include="Web References\WebReference\TransportWS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -246,13 +161,6 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
