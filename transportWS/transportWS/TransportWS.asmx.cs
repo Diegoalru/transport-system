@@ -77,7 +77,7 @@ namespace transportWS
 
         #region  Usuario
         [WebMethod]
-        public Boolean InsertaUsuario(string Usuario, string Clave, string Email)
+        public Boolean InsertaUsuario(string Usuario, string Clave)
         {
             try
             {
@@ -85,12 +85,11 @@ namespace transportWS
                 INSERT
                     INTO 
                         USUARIO
-                        (USERNAME, PASSWORD, EMAIL)
+                        (USERNAME, PASSWORD)
                     VALUES
                         (
                             '{Usuario}'
                             ,N'{Clave}'
-                            ,N'{Email}'
                         );";
                 SqlConnection conn = new SqlConnection();
                 using (conn = new SqlConnection(ConnectionString))
@@ -117,7 +116,7 @@ namespace transportWS
             try
             {
                 DataSet ds = new DataSet();
-                string query = $@"SELECT USERNAME AS [Nombre_de_Usuario], Email AS [Correo_Electrónico] FROM USUARIO;";
+                string query = $@"SELECT USERNAME AS [Nombre_de_Usuario] FROM USUARIO;";
                 SqlConnection conn = new SqlConnection();
                 using (conn = new SqlConnection(ConnectionString))
                 {
@@ -141,7 +140,7 @@ namespace transportWS
         }
 
         [WebMethod]
-        public Boolean ExisteUsuario(string Usuario, string Email)
+        public Boolean ExisteUsuario(string Usuario)
         {
             try
             {
@@ -152,8 +151,7 @@ namespace transportWS
                 FROM 
                     USUARIO
                 WHERE 
-                    USERNAME = '{Usuario}'
-                    AND EMAIL = N'{Email}';";
+                    USERNAME = '{Usuario}';";
                 SqlConnection conn = new SqlConnection();
                 using (conn = new SqlConnection(ConnectionString))
                 {
@@ -175,7 +173,7 @@ namespace transportWS
         }
 
         [WebMethod]
-        public Boolean EliminaUsuario(string Usuario, string Email)
+        public Boolean EliminaUsuario(string Usuario)
         {
             try
             {
@@ -184,7 +182,7 @@ namespace transportWS
                     FROM
                         USUARIO
                     WHERE
-                        USERNAME = '{Usuario}' AND EMAIL = N'{Email}';";
+                        USERNAME = '{Usuario}';";
                 SqlConnection conn = new SqlConnection();
                 using (conn = new SqlConnection(ConnectionString))
                 {
@@ -205,11 +203,11 @@ namespace transportWS
         }
 
         [WebMethod]
-        public Boolean ModificaUsuario(string Usuario, string Email, string Clave)
+        public Boolean ModificaUsuario(string Usuario, string Clave)
         {
             try
             {
-                string query = $"UPDATE USUARIO SET PASSWORD = N'{Clave}' WHERE USERNAME = '{Usuario}' AND EMAIL = N'{Email}';";
+                string query = $"UPDATE USUARIO SET PASSWORD = N'{Clave}' WHERE USERNAME = '{Usuario}';";
                 SqlConnection conn = new SqlConnection();
                 using (conn = new SqlConnection(ConnectionString))
                 {
@@ -970,5 +968,14 @@ namespace transportWS
             }
         }
         #endregion
+
+        #region Paginas
+        [WebMethod]
+        public DataSet InfoEstudiante(string nombre)
+        {
+            return null;
+        }
+        #endregion
+
     }
 }
