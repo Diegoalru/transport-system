@@ -973,7 +973,54 @@ namespace transportWS
         [WebMethod]
         public DataSet InfoEstudiante(string nombre)
         {
-            return null;
+            try
+            {
+                string query = @"select 
+    CONCAT(PE.PRIMER_NOMBRE, ' ', PE.PRIMER_APELLIDO, ' ', PE.SEGUNDO_APELLIDO) AS NOMBRE
+    , CONCAT('Placa: ', B.PLACA) as BUS
+    ,CONCAT(PEE.PRIMER_NOMBRE, ' ', PEE.PRIMER_APELLIDO, ' ', PEE.SEGUNDO_APELLIDO) AS[NOMBRE EMPLEADO]
+    ,PA.NOMBRE AS PARADA
+    ,C.NOMBRE AS COLEGIO
+from HISTORIAL AS H
+    INNER JOIN ESTUDIANTE AS ES
+    ON(H.FK_ESTUDIANTE = ES.CODE)
+    INNER JOIN PERSONA AS PE
+    ON(ES.FK_PERSONA = PE.CODE)
+    INNER JOIN PARADA AS PA
+    ON(ES.FK_PARADA = PA.CODE)
+    INNER JOIN RUTA AS R
+    ON(R.FK_PARADA = PE.CODE)
+    INNER JOIN VIAJE AS V
+    ON(V.FK_RUTA = R.RUTA_ID)
+    INNER JOIN BUS AS B
+    ON(B.CODE = V.FK_BUS)
+    INNER JOIN EMPLEADO AS EM
+    ON(EM.CODE = V.FK_EMPLEADO)
+    INNER JOIN PERSONA AS PEE
+    ON(PEE.CODE = EM.FK_PERSONA)
+    INNER JOIN COLEGIO AS C
+    ON(C.CODE = ES.FK_COLEGIO)";
+                SqlConnection conn = new SqlConnection(ConnectionString);
+                DataSet ds = new DataSet();
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(ds);
+                        }
+                    }
+                    conn.Close();
+                }
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
         #endregion
 
