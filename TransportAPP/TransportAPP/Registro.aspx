@@ -89,7 +89,7 @@
 			<!-- banner-text -->
 			<div class="banner-text agileinfo about-bnrtext"> 
 				<div class="container">
-					<h2><a href="Home.apsx">Inicio</a> / Registrarse</h2> 
+					<h2 class="text-left"><a href="Home.apsx">Inicio</a> / Registrarse</h2> 
 				</div>
 			</div>
 			<!-- //banner-text -->   
@@ -175,12 +175,10 @@
 
                         <asp:CheckBox ID="CheckBox7" runat="server" oncheckedchanged="CheckBox1_CheckedChanged" AutoPostBack="true" CssClass="auto-style8" />
                         <asp:Label ID="Lbl_Clular" runat="server" Font-Size="20pt" Text="Celular" CssClass="auto-style4"></asp:Label><br>
-						<asp:TextBox ID="txt_Celular" runat="server" TextMode="Number" CssClass="auto-style7"></asp:TextBox><br><br /><br />
+						<asp:TextBox ID="txt_Celular" runat="server" TextMode="Number" CssClass="auto-style7"></asp:TextBox>
 				</div>
 					</form>
 				</div>
-				
-				<div class="clearfix"> </div>	
 			</div>
 		</div>
 	</div>
@@ -196,8 +194,8 @@
 	<div class="footer w3-w3layouts">
 		<div class="container"> 
 			<div class="footer-agileinfo">
-				<div class="col-md-4 col-sm-4 footer-wthreegrid">
-					<h3>Acerca de:footerabt-w3text"> 
+				<div class="col-md-4 col-sm-4 footer-wthreegrid" style="text-align: left; left: 0px; top: 0px; width: 855px">
+					<h3>Acerca de:<h3> 
 						<p>Proyecto universitario con fines educativos de la ULACIT / Servicios Web</p>
 						<div class="social-w3licon">
 							<a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
@@ -205,87 +203,20 @@
 							<!--<a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a>--> 
 						</div>  
 					</div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>  
-		</div>
-	</div>
-	<div class="col-md-4 contact-right wthree">
-					<div class="contact-text w3-agileits">
-						<h4>Contactenos :</h4>
+                <div class="col-md-4 col-sm-4 footer-wthreegrid" style="text-align: left; left: 639px; top: -173px; width: 422px">
+                <h4 class="text-left">Contactenos :</h4>
 						<p><i class="fa fa-map-marker"></i> San Francisco, Guadalupe, San José, Costa Rica. </p>
 						<p><i class="fa fa-phone"></i> Telephone : +506 8888 9999</p>
 						<p><i class="fa fa-fax"></i> FAX : +506 2222 3344</p>
 						<p><i class="fa fa-envelope-o"></i> Email : <a href="mailto:example@mail.com">serviciosweb@example.com</a></p>
-					</div> 
-				</div> 
-	<div class="copy-right"> 
+					</div>
+                    <div class="clearfix"> </div>
+				</div>
+			</div>  
+		</div>
 		<div class="container">
 		</div> 
-	</div> 
-	<!-- //footer -->  
-	<!-- footer modal -->
-	<div class="modal about-modal w3-agileits fade" id="myModal" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div> 
-				<div class="modal-body">
-					<img src="images/img1.jpg" class="img-responsive" alt=""> 
-					<h5>Cras rutrum iaculis enim</h5>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum iaculis enim, non convallis felis mattis at. Donec fringilla lacus eu pretium rutrum. Cras aliquet congue ullamcorper. Etiam mattis eros eu ullamcorper volutpat. Proin ut dui a urna efficitur varius. uisque molestie cursus mi et congue consectetur adipiscing elit cras rutrum iaculis enim, Lorem ipsum dolor sit amet, non convallis felis mattis at. Maecenas sodales tortor ac ligula ultrices dictum et quis urna. Etiam pulvinar metus neque, eget porttitor massa vulputate. </p>
-				</div> 
-			</div>
-		</div>
+	<div class="copy-right"> 
 	</div>
-	<!-- //footer modal -->   
-	<!-- js --> 
-	<script src="Css/js/jquery-2.2.3.min.js"></script> 
-	<script src="Css/js/SmoothScroll.min.js"></script>
-	<script src="Css/js/jarallax.js"></script> 
-	<script type="text/javascript">
-		/* init Jarallax */
-		$('.jarallax').jarallax({
-			speed: 0.5,
-			imgWidth: 1366,
-			imgHeight: 768
-		})
-	</script>  
-	<!-- //js -->  
-	<!-- start-smooth-scrolling --> 
-	<script type="text/javascript" src="Css/js/move-top.js"></script>
-	<script type="text/javascript" src="Css/js/easing.js"></script>	
-	<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
-					event.preventDefault();
-			
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
-	</script>
-	<!-- //end-smooth-scrolling -->	 
-	<!-- smooth-scrolling-of-move-up -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-			};
-			*/
-			
-			$().UItoTop({ easingType: 'easeOutQuart' });
-			
-		});
-	</script>
-	<!-- //smooth-scrolling-of-move-up -->  
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="Css/js/bootstrap.js"></script>
-</body>
+	</body>
 </html>

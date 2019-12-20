@@ -24,6 +24,7 @@
         .auto-style1 {
             font-size: 40px;
             color: #FFFFFF;
+            position: center
         }
     </style>
 </head>
@@ -92,7 +93,7 @@
 				<div class="col-md-6 features-w3grid"> 
 					<div class="features-row2"> 
 						<div class="features-w3lleft">  
-							<h4>Nuevo Usuario</h4>
+							<h4 class="text-left">Nuevo Usuario</h4>
 							<p>Ingrese su información para registrarse</p>
 						</div>
 						<div class="features-w3lright">
@@ -104,7 +105,7 @@
 				<div class="col-md-6 features-w3grid">  
 					<div class="features-row2"> 
 						<div class="features-w3lleft">  
-							<h4>Ya eres usuario </h4>
+							<h4 class="text-left">Ya eres usuario </h4>
 							<p>Click Aquí</p>
 						</div>
 						<div class="features-w3lright">
@@ -128,28 +129,28 @@
 				<div class="col-md-3 col-xs-6 w3l-welcome-grid"> 
 					<img src="Css/images/schedule.gif" alt=" " class="img-responsive"/>   
 					<div class="agileits-welcome-info">
-						<h4>Historial y Horarios</h4>
+						<h4 class="text-left">Historial y Horarios</h4>
 						<p>Puedes ver todas las actualizaciones e historico por estudiante y fecha desde nuestro sitio</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-xs-6 w3l-welcome-grid">
 					<img src="Css/images/remplazo img 3.jpg" alt=" " class="img-responsive"/>   
 					<div class="agileits-welcome-info">
-						<h4>GPS localización</h4>
+						<h4 class="text-left">GPS localización</h4>
 						<p>Con las últimas tendencias en tecnología e incorporacion de seguimiento GPS para mayor seguridad</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-xs-6 w3l-welcome-grid">
 					<img src="Css/images/modernbus.gif" alt=" " class="img-responsive"/>   
 					<div class="agileits-welcome-info">
-						<h4>Transporte moderno </h4>
+						<h4 class="text-left">Transporte moderno </h4>
 						<p>Con una flotilla superior al año 2010, modernos y confortables</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-xs-6 w3l-welcome-grid">
 					<img src="Css/images/responsive web.jpg" alt=" " class="img-responsive"/>   
 					<div class="agileits-welcome-info">
-						<h4>Responsive Web</h4>
+						<h4 class="text-justify">Responsive Web</h4>
 						<p>Nuestra plataforma tiene la capacidad de adaptarse a los diferentes formatos de dispositivos móviles</p>
 					</div>
 				</div>
@@ -167,13 +168,13 @@
 			<div class="services-w3lsrow">
 				<div class="col-md-3 col-sm-3 col-xs-6 services-grids">  
 					<i class="fa fa-gears icon" aria-hidden="true"></i> 
-					<h4>Configuración</h4>
+					<h4 class="text-left">Configuración</h4>
 					<p>Nuestra página contiene todas las disponibilidades de manera sencilla para el usuario, por registro de cuenta</p>
 				</div>
 				<div class="col-md-3 col-sm-3 col-xs-6 services-grids">
 					<div class="w3agile-servs-img">
 						<i class="fa fa-group icon" aria-hidden="true"></i> 
-						<h4>Accesibilidad </h4>
+						<h4 class="text-left">Accesibilidad </h4>
 						<p>Puedes ingresar desde cualquier dispositivo con una conexión a internet, para controlar y verificar estado</p>
 					</div>
 				</div>
